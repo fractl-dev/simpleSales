@@ -3,6 +3,6 @@
   "version": "0.0.1",
   "description": "A simple sales app with HubSpot integration built using Agentlang",
   "dependencies": {
-    "hubspot-studio": "git+https://github.com/agentlang-hub/hubspot-studio.git#main",
+    "hubspot-studio": "git+https://github.com/agentlang-hub/hubspot-studio.git#main"
   }
 }

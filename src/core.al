@@ -8,7 +8,7 @@ entity Lead {
     phone String @optional,
     company String @optional,
     jobTitle String @optional,
-    leadStatus @enum("new", "contacted", "qualified", "unqualified") @default("new"),
+    leadStatus @enum("New", "Contacted", "Qualified", "Unqualified") @default("new"),
     lifecycleStage @enum("lead", "marketing_qualified_lead", "sales_qualified_lead", "opportunity", "customer") @default("lead"),
     source String @optional,
     notes String @optional,

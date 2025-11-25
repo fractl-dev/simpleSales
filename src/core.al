@@ -1,5 +1,10 @@
 module simpleSales.core
 
+{agentlang.ai/LLM {
+    name "default",
+    service "openai"}
+}
+
 entity Lead {
     id UUID @id @default(uuid()),
     firstName String,

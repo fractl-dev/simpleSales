@@ -1,5 +1,7 @@
 module simpleSales.core
 
+delete {agentlang.ai/LLM {name? "default"}}
+
 {agentlang.ai/LLM {
     name "default",
     service "openai"}

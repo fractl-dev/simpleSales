@@ -30,7 +30,7 @@ entity Deal {
     id UUID @id @default(uuid()),
     dealName String,
     dealStage String @optional,  // HubSpot dealstage: "appointmentscheduled", "qualifiedtobuy", "presentationscheduled", "decisionmakerboughtin", "contractsent", "closedwon", "closedlost"
-    amount Decimal @optional,
+    amount String @optional,
     closeDate DateTime @optional,
     priority String @optional,  // "LOW", "MEDIUM", "HIGH" (if using standard priority field)
     hubspotId String @optional,

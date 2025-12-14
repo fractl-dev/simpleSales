@@ -30,7 +30,7 @@ entity Deal {
     id UUID @id @default(uuid()),
     dealName String,
     dealStage String @optional,  // HubSpot dealstage: "appointmentscheduled", "qualifiedtobuy", "presentationscheduled", "decisionmakerboughtin", "contractsent", "closedwon", "closedlost"
-    amount Decimal @optional,
+    amount String @optional,
     closeDate DateTime @optional,
     priority String @optional,  // "LOW", "MEDIUM", "HIGH" (if using standard priority field)
     hubspotId String @optional,
@@ -238,39 +238,11 @@ workflow syncLeadToHubSpot {
 }
 
 workflow syncDealToHubSpot {
-    "Auto-syncing Deal to HubSpot: " + this.dealName @as logMessage;
-    console.log(logMessage);
-
-    "#js `
-        this.amount ? this.amount.toString() : '0'
-    `" @as amountStr;
-
-    "#js `
-        this.closeDate ? this.closeDate.toISOString().split('T')[0] : null
-    `" @as closeDateStr;
-
     {hubspot/Deal {
         deal_name this.dealName,
-        deal_stage this.dealStage,
-        amount amountStr,
-        close_date closeDateStr,
-        priority this.priority
-    }} @as [hubspotDeal];
-
-    "#js `
-        const deal = hubspotDeal[0];
-        deal ? deal.id : null
-    `" @as hsId;
-
-    {Deal {
-        id? this.id,
-        hubspotId hsId
-    }} @as [updatedDeal];
-
-    "Deal synced to HubSpot with ID: " + hsId @as successMessage;
-    console.log(successMessage);
-
-    updatedDeal
+        amount this.amount,
+        createdAt this.createdAt
+    }}
 }
 
 @public workflow createSampleContact {
